@@ -1,0 +1,13 @@
+[Unit]
+Description=Prosody docker container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm --name prosody -p 5222:5222 -p 5269:5269 -p 127.0.0.1:5347:5347 -v /data/prosody/conf:/etc/prosody -v /data/prosody/lib:/var/lib/prosody darek/prosody:1.2
+ExecStop=/usr/bin/docker stop -t 2 prosody 
+
+[Install]
+WantedBy=local.target
+
