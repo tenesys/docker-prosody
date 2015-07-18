@@ -1,9 +1,22 @@
 # docker-prosody
-A simple prosody Dockerfile for Debian jessie. 
+A simple prosody Dockerfile for Debian jessie. Available from docker hub (https://registry.hub.docker.com/u/darek/prosody/).
 
-The image is built from Debian jessie. In order to use it with external host volumes you need to run the container with `-v` switches. 
+`docker pull darek/prosody:1.2`
 
-The volumes on the host need to have permissions so the prosody server inside the container can read them. The container prosody user and group are 104 and 108 respectively. 
+# Running 
 
-For systemd integration see the attached exemplary service file. 
+The volumes on the host need to have permissions so the prosody server inside the container can read them. The container `prosody` user and group have `uid` `104` and `gid` `108` respectively. 
 
+You can run the container like that:
+
+    docker run -d --name prosody \
+    -p 5222:5222 \
+    -p 5269:5269 \
+    -p 127.0.0.1:5347:5347 \
+    -v /data/prosody/conf:/etc/prosody \
+    -v /data/prosody/lib:/var/lib/prosody  \
+    darek/prosody:1.2 
+
+# Copyright 
+
+Copyright (c) 2015 by Dariusz Dwornikowski <d.dwornikowski@tenesys.pl>
