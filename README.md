@@ -17,6 +17,14 @@ You can run the container like that:
     -v /data/prosody/lib:/var/lib/prosody  \
     darek/prosody:1.2 
 
+## Running in systemd
+
+We attach a file to manage the container with systemd. Copy `prosody-container.service` to `/etc/systemd/system` and do:
+
+    sudo systemctl enable prosody-container
+    sudo systemctl stary prosody-container
+    
+
 # Copyright 
 
 Copyright (c) 2015 by Dariusz Dwornikowski <d.dwornikowski@tenesys.pl>
